@@ -1,0 +1,15 @@
+pipeline:
+  short_circuit: true
+
+# Guards run in this order, so keep cheap ones first
+input:
+  - guard: pii_regex
+    enabled: true
+
+  - guard: injection_rules
+    enabled: true
+    threshold: 0.7
+
+  - guard: injection_classifier
+    enabled: false
+    threshold: 0.5
